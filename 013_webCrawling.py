@@ -1,3 +1,4 @@
+import bs4.element
 from bs4 import BeautifulSoup
 import requests
 
