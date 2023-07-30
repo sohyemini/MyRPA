@@ -17,8 +17,6 @@ class MainWindow(QMainWindow, Ui_Dialog):
         self.rbStatic.clicked.connect(self.rbStaticClick)
 
         self.rbStatic.click()
-        print(self.rbStatic.isChecked())
-        print(self.rbKey.isChecked())
 
     # from 012_messagebox2.py ################################
     def showMsgBox(self, wndTitle, title, info, icon, btns, dbtn):

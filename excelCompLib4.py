@@ -52,11 +52,12 @@ class StaticFormExcelCompare():
         except:
             return False
 
-a = StaticFormExcelCompare()
-a.setColor('123456', '789ABC','DEF123')
-a.setFiles(r".\files\income_state_org.xlsx", r".\files\income_state_new.xlsx", r".\files\income_state_comp2.xlsx")
-if a.run():
-    print("파일 비교 완료")
-else:
-    print("파일 비교 에러")
+if __name__ == "__main__":
+    a = StaticFormExcelCompare()
+    a.setColor('123456', '789ABC','DEF123')
+    a.setFiles(r".\files\income_state_org.xlsx", r".\files\income_state_new.xlsx", r".\files\income_state_comp2.xlsx")
+    if a.run():
+        print("파일 비교 완료")
+    else:
+        print("파일 비교 에러")
 
