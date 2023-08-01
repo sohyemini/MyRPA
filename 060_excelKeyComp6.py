@@ -40,10 +40,13 @@ if flag1 or flag2:
 found = False
 diff_color = PatternFill(start_color='ffff99', end_color='ffff99', fill_type='solid')
 del_color = PatternFill(start_color='789ABC', end_color='789ABC', fill_type='solid')
+added_color = PatternFill(start_color='ff9999', end_color='ff9999', fill_type='solid')
 cancel_font = Font(strike=True)
+added = [True for i in range(mr_new-1)]
 for i in range(2, mr_ori+1):        # 원본 키값 (행)
     for j in range(2, mr_new+1):    # 비교파일 키값 (행)
         if ws_ori.cell(i, 1).value == ws_new.cell(j, 1).value:  # 원본과 비교파일 키값이 같으면 (행)
+            added[j - 2] = False
             for k in range(2, mc_ori + 1): # 같은 키값들의 열을 비교함
                 if ws_ori.cell(i,k).value != ws_new.cell(j, k).value: # (열)이 다르다면
                     if ws_ori.cell(i,k).value == None: ws_ori.cell(i,k).value = '' # None --> ''
@@ -58,5 +61,15 @@ for i in range(2, mr_ori+1):        # 원본 키값 (행)
             ws_ori.cell(i, k).fill = del_color
             ws_ori.cell(i, k).font = cancel_font
     found = False
+
+for i in range(len(added)):
+    if added[i]:
+        added_key = ws_new.cell(i+2, 1).value
+        next_key_not_added = None
+        for j in range(i+1, len(added)):
+            if added[j] == False:
+                next_key_not_added = ws_new.cell(j+2, 1).value
+                break
+        print(i+2, added_key, next_key_not_added)
 
 wb_ori.save(r".\files\address_diff2.xlsx")
