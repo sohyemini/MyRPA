@@ -2,6 +2,11 @@ import openpyxl
 from openpyxl.styles import PatternFill, Font
 
 class UniqueKeyExcelCompare():
+
+    SUCCESS         = 1
+    SIZE_DIFFERENT  = 2
+    KEY_ERROR       = 3
+    FILE_OPENED      = 4
     def __init__(self):
         self.diff_color = PatternFill(start_color='ffff99', end_color='ffff99', fill_type='solid')
         self.added_color = PatternFill(start_color='789ABC', end_color='789ABC', fill_type='solid')
@@ -28,8 +33,8 @@ class UniqueKeyExcelCompare():
             for j in range(i+1, mr_ori+1):
                 if ws_ori.cell(i, 1).value == ws_ori.cell(j, 1).value:
                     # print(f"원본파일 : {i}, {j}겹치는 키가 있습니다.")
-                    Flag1 = True
-                    return False
+                    flag1 = True
+                    break
 
         if flag1 == False:
             print("원본 파일에는 겹치는 키가 없습니다.")
@@ -44,15 +49,15 @@ class UniqueKeyExcelCompare():
             for j in range(i+1, mr_new+1):
                 if ws_new.cell(i, 1).value == ws_new.cell(j, 1).value:
                     # print(f"비교할 파일: {i}, {j}겹치는 키가 있습니다.")
-                    Flag2 = True
-                    return False
+                    flag2 = True
+                    break
 
         if flag2 == False:
             print("비교할 파일에는 겹치는 키가 없습니다.")
 
         if flag1 or flag2:
             # print("중복 키가 있습니다.\n각 파일을 확인해주시기 바랍니다.")
-            return False
+            return self.KEY_ERROR
             # exit(0)
 
         found = False
@@ -104,9 +109,9 @@ class UniqueKeyExcelCompare():
 
         try:
             wb_ori.save(self.wb_out)
-            return True
+            return self.SUCCESS
         except:
-            return False
+            return self.FILE_OPENED
 
 if __name__ == "__main__":
     a = UniqueKeyExcelCompare()
