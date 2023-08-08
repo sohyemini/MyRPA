@@ -1,6 +1,5 @@
 import os, datetime, time
 
-
 path = "./"
 info_org = []
 info_new = []
@@ -15,7 +14,7 @@ while True:
     file_list_new = os.listdir(path)
     for file in file_list_new:
         # 상세정보 업데이트
-        mtime = datetime.datetime.fromtimestamp(os.path.getmtime(file) )
+        mtime = datetime.datetime.fromtimestamp(os.path.getmtime(file))
         size = os.path.getsize(file)
         info_new.append((file, mtime, size))
 
@@ -32,19 +31,22 @@ while True:
     for deleted in file_list_org:
         if deleted not in file_list_new:
             print(f"deleted = {deleted}")
-            idx = file_list_org.index(deleted)
-            info_org.remove(info_org[idx])
             file_list_org.remove(deleted)
+            for del_data in info_org:
+                if del_data[0] == deleted:
+                    info_org.remove(del_data)
 
     for org in info_org:
         if org not in info_new:
-            print(f"modified = {org[0]}")
+            try:
+                mtime = datetime.datetime.fromtimestamp(os.path.getmtime(org[0]))
+                size = os.path.getsize(org[0])
+                info_org.append((org[0], mtime, size))
+                print(f"modified = {org[0]}")
+            except:
+                print(f"file deleted already = {org[0]}")
             info_org.remove(org)
-            mtime = datetime.datetime.fromtimestamp(os.path.getmtime(org[0]))
-            size = os.path.getsize(org[0])
-            info_org.append((org[0], mtime, size))
 
     time.sleep(1)
-
 
 
