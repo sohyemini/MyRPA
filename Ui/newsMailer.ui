@@ -13,36 +13,6 @@
   <property name="windowTitle">
    <string>자동 뉴스 이메일러</string>
   </property>
-  <widget class="QTableView" name="tblNews">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>40</y>
-     <width>311</width>
-     <height>192</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </widget>
-  <widget class="QTableView" name="tblEmail">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>270</y>
-     <width>311</width>
-     <height>192</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="leNewID">
    <property name="geometry">
     <rect>
@@ -524,6 +494,26 @@
    </property>
    <property name="text">
     <string>Del</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tblNews">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>40</y>
+     <width>311</width>
+     <height>201</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tblEmail">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>280</y>
+     <width>311</width>
+     <height>201</height>
+    </rect>
    </property>
   </widget>
  </widget>

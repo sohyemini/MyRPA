@@ -17,26 +17,18 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QHeaderView,
     QLabel, QLineEdit, QPushButton, QSizePolicy,
-    QTableView, QWidget)
+    QTableWidget, QTableWidgetItem, QWidget)
 
 class Ui_dlgMain(object):
     def setupUi(self, dlgMain):
         if not dlgMain.objectName():
             dlgMain.setObjectName(u"dlgMain")
         dlgMain.resize(674, 551)
-        self.tblNews = QTableView(dlgMain)
-        self.tblNews.setObjectName(u"tblNews")
-        self.tblNews.setGeometry(QRect(20, 40, 311, 192))
-        font = QFont()
-        font.setPointSize(10)
-        self.tblNews.setFont(font)
-        self.tblEmail = QTableView(dlgMain)
-        self.tblEmail.setObjectName(u"tblEmail")
-        self.tblEmail.setGeometry(QRect(20, 270, 311, 192))
-        self.tblEmail.setFont(font)
         self.leNewID = QLineEdit(dlgMain)
         self.leNewID.setObjectName(u"leNewID")
         self.leNewID.setGeometry(QRect(350, 100, 51, 20))
+        font = QFont()
+        font.setPointSize(10)
         self.leNewID.setFont(font)
         self.cbSend = QCheckBox(dlgMain)
         self.cbSend.setObjectName(u"cbSend")
@@ -150,6 +142,12 @@ class Ui_dlgMain(object):
         self.pbDeleteEmail.setObjectName(u"pbDeleteEmail")
         self.pbDeleteEmail.setGeometry(QRect(470, 420, 51, 41))
         self.pbDeleteEmail.setFont(font1)
+        self.tblNews = QTableWidget(dlgMain)
+        self.tblNews.setObjectName(u"tblNews")
+        self.tblNews.setGeometry(QRect(20, 40, 311, 201))
+        self.tblEmail = QTableWidget(dlgMain)
+        self.tblEmail.setObjectName(u"tblEmail")
+        self.tblEmail.setGeometry(QRect(20, 280, 311, 201))
 
         self.retranslateUi(dlgMain)
 
