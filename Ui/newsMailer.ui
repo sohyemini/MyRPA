@@ -175,7 +175,7 @@
     </font>
    </property>
   </widget>
-  <widget class="QLineEdit" name="leName_2">
+  <widget class="QLineEdit" name="leSTime">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -188,6 +188,9 @@
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+   <property name="inputMask">
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label">
