@@ -111,6 +111,11 @@ class DBase:
         conn = db.execute(sql)
         return conn.fetchall()
 
+    def getOneData(self, tbl_name, idx):
+        db = self.connection.cursor()
+        sql = f"SELECT * FROM {tbl_name} WHERE idx = {idx}"
+        conn = db.execute(sql)
+        return conn.fetchall()
 
 if __name__ == "__main__":
     db = DBase()
