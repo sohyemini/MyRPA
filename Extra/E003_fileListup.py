@@ -5,12 +5,12 @@ path = "./"
 file_list = os.listdir(path)
 print(file_list)
 
-isExist1 = os.path.exists(r".\\E001_Thread.py")
+isExist1 = os.path.exists(r"../090_Thread.py")
 isExist2 = os.path.exists(r".\\")
 isExist3 = os.path.exists(r".\\test.py")
 print(isExist1, isExist2, isExist3)
 
-isFile1 = os.path.isfile(r".\\E001_Thread.py")
+isFile1 = os.path.isfile(r"../090_Thread.py")
 isFile2 = os.path.isfile(r".\\")
 print(isFile1, isFile2)
 

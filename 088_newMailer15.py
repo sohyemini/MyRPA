@@ -511,7 +511,7 @@ class MainWindow(QMainWindow, Ui_dlgMain):
                 # 새롭게 선택된 kidx에 따라서 email을 불러서 화면에 보여줘야 함
                 self.tblNews.setFocus()
             self.pbNew.setEnabled(True)
-            self.pbDelete.setEnabled(False)
+            self.pbCancel.setEnabled(False)
             self.pbSave.setEnabled(False)
             self.emailNewButtonSetup()
         else:

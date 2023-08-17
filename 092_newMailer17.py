@@ -1,4 +1,4 @@
-import sys
+import sys, threading, time, datetime
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QAbstractItemView, QLabel, QMessageBox
 from PySide6.QtGui import Qt, QPixmap
 
@@ -54,8 +54,25 @@ class MainWindow(QMainWindow, Ui_dlgMain):
         self.EmailDetailWidget(False)
 
         self.emailNewButtonSetup()
-
         self.checkSTimeAndSet()
+
+        checkingTimeThread = threading.Thread(target=self.timeChecker, daemon=True)
+        checkingTimeThread.start()
+
+    def timeChecker(self):
+        while True:
+            now = datetime.datetime.now()
+            chh = now.hour
+            cmm = now.minute
+            str_hh, str_mm = self.leSTime.text().split(':')
+            hh = int(str_hh)
+            mm = int(str_mm)
+
+            if chh == hh and cmm == mm:
+                print("it's time. send email")
+            else:
+                print(f"wait....current time -> {chh}:{cmm} / sending time {self.leSTime.text()}")
+            time.sleep(6)
 
     def emailNewButtonSetup(self):
         if self.tblNews.rowCount() == 0:
@@ -498,6 +515,17 @@ class MainWindow(QMainWindow, Ui_dlgMain):
             if cnt == 1: # 마지막 데이터 삭제. 더이상 데이터가 없음
                 self.pbEdit.setEnabled(False)
                 self.pbDelete.setEnabled(False)
+
+                self.loadEmailTable(0)
+
+                self.leSearch.clear()
+                self.leNewID.clear()
+                self.cbSend.setChecked(False)
+
+                self.leEmailID.clear()
+                self.leName.clear()
+                self.leEmail.clear()
+                self.leMemo.clear()
             else:
                 self.pbEdit.setEnabled(True)
                 self.pbDelete.setEnabled(True)
@@ -511,7 +539,7 @@ class MainWindow(QMainWindow, Ui_dlgMain):
                 # 새롭게 선택된 kidx에 따라서 email을 불러서 화면에 보여줘야 함
                 self.tblNews.setFocus()
             self.pbNew.setEnabled(True)
-            self.pbDelete.setEnabled(False)
+            self.pbCancel.setEnabled(False)
             self.pbSave.setEnabled(False)
             self.emailNewButtonSetup()
         else:
@@ -546,7 +574,7 @@ class MainWindow(QMainWindow, Ui_dlgMain):
                     self.emailTableClicked(sel-1, 0)
                 self.tblEmail.setFocus()
             self.pbNewEmail.setEnabled(True)
-            self.pbDeleteEmail.setEnabled(False)
+            self.pbCancelEmail.setEnabled(False)
             self.pbSaveEmail.setEnabled(False)
         else:
             return
